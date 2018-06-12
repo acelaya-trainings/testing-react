@@ -1,12 +1,14 @@
 import React from 'react';
-import CommentBox from '../CommentBox';
+import { CommentBox } from '../CommentBox';
 import { mount } from 'enzyme';
 
 describe('CommentBox', () => {
   let wrapped;
+  let saveComment;
 
   beforeEach(() => {
-    wrapped = mount(<CommentBox />);
+    saveComment = jest.fn();
+    wrapped = mount(<CommentBox saveComment={saveComment} />);
   });
   afterEach(() => {
     wrapped.unmount();
@@ -37,5 +39,12 @@ describe('CommentBox', () => {
 
       expect(wrapped.find('textarea').prop('value')).toEqual('');
     });
+
+    it('submits the new comment', () => {
+      wrapped.find('form').simulate('submit');
+      wrapped.update();
+
+      expect(saveComment).toHaveBeenCalledWith('foobar');
+    })
   });
 });
