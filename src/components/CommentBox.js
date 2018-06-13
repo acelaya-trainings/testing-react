@@ -26,7 +26,7 @@ export class CommentBox extends React.Component {
             <button>Submit comment</button>
           </div>
         </form>
-        <button onClick={this.fetchComments}>Fetch comments</button>
+        <button onClick={this.fetchComments} className="fetch-comments">Fetch comments</button>
       </div>
     );
   }
