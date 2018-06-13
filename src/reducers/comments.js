@@ -1,9 +1,9 @@
-import { SAVE_COMMENT } from '../actions/types';
+import { SAVE_COMMENT, FETCH_COMMENTS } from '../actions/types';
 
 export default (state = [], action) => {
   switch (action.type) {
-    // case FETCH_COMMENTS:
-    //   return action.comments;
+    case FETCH_COMMENTS:
+      return [ ...state, ...action.payload.data.map(comment => comment.name) ];
     case SAVE_COMMENT:
       return [ ...state, action.comment ]
   }
